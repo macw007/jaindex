@@ -7,7 +7,7 @@ exports.handler = function(event,context,callback){
 	for(var i=0;i<list.length;i++){
 		var target =list[i];
 		
-		var urlObject =url.parse(target);
+		setTimeout(function(){var urlObject =url.parse(target);},3000);
 		
 		var mod = require(urlObject.protocol.substring(0,urlObject.protocol.length-1));
     
