@@ -9,7 +9,7 @@ exports.handler = function(event,context,callback){
 		
 		var urlObject =url.parse(target);
 		
-		var mod = require(urlObject.substring(0,urlObject.length-1));
+		var mod = require(urlObject.protocol.substring(0,urlObject.protocol.length-1));
     
 		var req = mod.request(urlObject,function(res){
 			
