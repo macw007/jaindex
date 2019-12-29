@@ -1,7 +1,7 @@
 'use strict'
 
 var url =require('url');
-export.handler = function(event,context,callback){
+exports.handler = function(event,context,callback){
 	
 	var list = ['www.google.com',''];
 	for(var i=0;i<list.length;i++){
