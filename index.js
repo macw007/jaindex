@@ -1,40 +1,48 @@
 'use strict'
 
 var url =require('url');
-exports.handler = function(event,context,callback){
+export.handler = function(event,context,callback){	
 	
 	var list = ['www.google.com',''];
 	for(var i=0;i<list.length;i++){
+		
+		
+		setTimeout(function(){ 		
 		var target =list[i];
 		
-		var urlObject;
-		setTimeout(function(){urlObject =url.parse(target);},3000);
+		var urlObject =url.parse(target);
 		
-		var mod = require(urlObject.protocol.substring(0,urlObject.protocol.length-1));
-    
+		var mod = require(urlObject.substring(0,urlObject.length-1));
 		var req = mod.request(urlObject,function(res){
 			
 			res.setEncoding('utf8');
 			res.on('data',function(chunk){
-				//console.log
-				
-			});			
-						
+				//console.log				
+			});
+			
+			
+			
+			
 			res.on('end',function(){
-				//console.log
+				console.log("[End] ");
 				callback();
 			});
 			
 						
 		});
 		
-				
+		
+		
 		req.on('error',function(e){			
-			//console.log
-			callback(e);			
+			console.log("[Error] "+e);
+			callback(e);
+			
 			
 		});
 		
-		req.end();						
+		req.end();		
+       }, 5000);
+		
 	}	
+	
 };
